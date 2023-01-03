@@ -32,7 +32,33 @@
   </head>
 
   <body>
+    <script>
+      const main = async () => {
+        let result = await fetch("/api/locations");
+        let data = await result.json();
+        modifyUI(data);
+      };
+      main();
+
+      const modifyUI = (data) => {
+        let ul = document.querySelector("ul");
+        let text = "";
+        for (let i = 0; i < data.length; i++) {
+          text =
+            text +
+            "<li>" +
+            data[i].id +
+            " - " +
+            data[i].latitude +
+            " - " +
+            data[i].longitude +
+            "</li>";
+        }
+        ul.innerHTML = text;
+      };
+    </script>
     <h1>TERVEHDYS</h1>
+    <ul></ul>
     <script src="js/scripts.js"></script>
   </body>
 </html>

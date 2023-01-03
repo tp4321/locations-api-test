@@ -1,9 +1,17 @@
 /* eslint-disable no-undef */
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
+
+let database = [
+  { id: 1, latitude: 60, longitude: 70 },
+  { id: 2, latitude: 40, longitude: 80 },
+];
 
 app.use(express.static("public"));
+app.get("/api/locations", (req, res) => {
+  res.send(JSON.stringify(database, null, database.length));
+});
 app.get("/randomize", (req, res) => {
   var number1 = Math.floor(Math.random() * 3);
   var number2 = Math.floor(Math.random() * 3);
