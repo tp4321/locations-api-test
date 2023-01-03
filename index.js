@@ -9,6 +9,7 @@ let database = [
 ];
 
 app.use(express.static("public"));
+app.use(express.json());
 
 app.get("/api/locations/", (req, res) => {
   res.send(JSON.stringify(database, null, database.length));
@@ -24,6 +25,15 @@ app.get("/api/locations/:urlId([0-9]+)", (req, res) => {
     }
   }
   res.send(location);
+});
+
+app.post("/api/locations", (req, res) => {
+  let longitude = req.body.longitude;
+  let latitude = req.body.latitude;
+  let id = database[database.length - 1].id + 1;
+  let newlocation = { latitude: latitude, longitude: longitude, id: id };
+  database.push(newlocation);
+  res.status(204).send(JSON.stringify(newlocation, null, 1));
 });
 
 app.delete("/api/locations/:urId([0-9]+)", (req, res) => {
