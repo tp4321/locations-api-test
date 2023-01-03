@@ -12,15 +12,15 @@ app.get("/randomize", (req, res) => {
   var text =
     "number1: " +
     number1 +
-    "/n" +
+    "\n" +
     "number2: " +
     number2 +
-    "/n" +
+    "\n" +
     "number3: " +
     number3;
 
   if (number1 == number2 && number1 == number3) {
-    text = text + "/n" + "Success!";
+    text = text + "\n" + "Success!";
   }
   res.send(text);
 });
