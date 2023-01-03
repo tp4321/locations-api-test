@@ -5,9 +5,9 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 app.get("/randomize", (req, res) => {
-  var number1 = Math.random() * 3;
-  var number2 = Math.random() * 3;
-  var number3 = Math.random() * 3;
+  var number1 = Math.floor(Math.random() * 3);
+  var number2 = Math.floor(Math.random() * 3);
+  var number3 = Math.floor(Math.random() * 3);
 
   var text =
     "number1: " +
