@@ -10,17 +10,10 @@ app.get("/randomize", (req, res) => {
   var number3 = Math.floor(Math.random() * 3);
 
   var text =
-    "number1: " +
-    number1 +
-    "\n" +
-    "number2: " +
-    number2 +
-    "\n" +
-    "number3: " +
-    number3;
+    "number1: " + number1 + "\nnumber2: " + number2 + "\nnumber3: " + number3;
 
   if (number1 == number2 && number1 == number3) {
-    text = text + "\n" + "Success!";
+    text = text + "\nSuccess!";
   }
   res.send(text);
 });
