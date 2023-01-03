@@ -9,9 +9,34 @@ let database = [
 ];
 
 app.use(express.static("public"));
-app.get("/api/locations", (req, res) => {
+
+app.get("/api/locations/", (req, res) => {
   res.send(JSON.stringify(database, null, database.length));
 });
+
+app.get("/api/locations/:urlId([0-9]+)", (req, res) => {
+  const urlId = Number(req.params.urlId);
+  var location = null;
+  for (let i = 0; i < database.length; i++) {
+    if (database[i].id == urlId) {
+      location = database[i];
+      break;
+    }
+  }
+  res.send(location);
+});
+
+app.delete("/api/locations/:urId([0-9]+)", (req, res) => {
+  const urId = Number(req.params.urId);
+  for (let i = 0; i < database.length; i++) {
+    if (database[i].id == urId) {
+      database = database.splice(i, 1);
+      break;
+    }
+  }
+  res.status(204).send();
+});
+
 app.get("/randomize", (req, res) => {
   var number1 = Math.floor(Math.random() * 3);
   var number2 = Math.floor(Math.random() * 3);
