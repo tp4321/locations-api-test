@@ -9,12 +9,20 @@ app.get("/randomize", (req, res) => {
   var number2 = Math.random() * 3;
   var number3 = Math.random() * 3;
 
-  res.send("number1: " + number1);
-  res.send("number2: " + number2);
-  res.send("number3: " + number3);
+  var text =
+    "number1: " +
+    number1 +
+    "/n" +
+    "number2: " +
+    number2 +
+    "/n" +
+    "number3: " +
+    number3;
+
   if (number1 == number2 && number1 == number3) {
-    res.send("success!");
+    text = text + "/n" + "Success!";
   }
+  res.send(text);
 });
 
 app.listen(port, () => {
